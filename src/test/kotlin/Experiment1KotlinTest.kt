@@ -16,12 +16,10 @@ class Experiment1KotlinTest {
 
     @Test
     fun test_2() {
-        val result = Experiment1.validateInput(1)
-
-        assertNull(result.exceptionOrNull())
-        val success = assertNotNull(result.getOrNull())
-
-        assertTrue(success)
+        val value = Experiment1.validateInput(1).unwrapValueOrBailOutWith {
+            fail("Validation should have succeeded but got $it")
+        }
+        assertTrue(value)
     }
 
     @Test
@@ -36,32 +34,14 @@ class Experiment1KotlinTest {
 
     @Test
     fun test_4() {
-        val result = Experiment1.validateInput(1)
-
-        if (result.isFailure) {
-            fail("Validation should have succeeded but got $result)")
+        val value = Experiment1.validateInputV2(1).unwrapValueOrBailOutWith {
+            fail("Validation should have succeeded but got $it")
         }
-
-        val success = result.getOrNull()!!
-
-        assertTrue(success)
+        assertEquals(Unit, value)
     }
 
     @Test
     fun test_5() {
-        val result = Experiment1.validateInputV2(1)
-
-        if (result.isFailure) {
-            fail("Validation should have succeeded but got $result)")
-        }
-
-        val success = result.getOrNull()!!
-
-        assertEquals(Unit, success)
-    }
-
-    @Test
-    fun test_6() {
         val result = Experiment1.highLevelOperation(0, 1)
 
         assertNull(result.getOrNull())
@@ -72,17 +52,15 @@ class Experiment1KotlinTest {
     }
 
     @Test
-    fun test_7() {
-        val result = Experiment1.highLevelOperation(1, 1)
-
-        assertNull(result.exceptionOrNull())
-        val success = assertNotNull(result.getOrNull())
-
-        assertEquals(2, success)
+    fun test_6() {
+        val value = Experiment1.highLevelOperation(1, 1).unwrapValueOrBailOutWith {
+            fail("Validation should have succeeded but got $it")
+        }
+        assertEquals(2, value)
     }
 
     @Test
-    fun test_8() {
+    fun test_7() {
         val result = Experiment1.highLevelOperationV2(0, 1)
 
         assertNull(result.getOrNull())
@@ -93,12 +71,10 @@ class Experiment1KotlinTest {
     }
 
     @Test
-    fun test_9() {
-        val result = Experiment1.highLevelOperationV2(1, 1)
-
-        assertNull(result.exceptionOrNull())
-        val success = assertNotNull(result.getOrNull())
-
-        assertEquals(2, success)
+    fun test_8() {
+        val value = Experiment1.highLevelOperationV2(1, 1).unwrapValueOrBailOutWith {
+            fail("Validation should have succeeded but got $it")
+        }
+        assertEquals(2, value)
     }
 }
