@@ -1,0 +1,16 @@
+# General folders
+/.idea/*
+/.gradle
+/build
+/captures
+/out
+/projectFilesBackup*
+/shelf
+
+!/.idea/codeStyles/
+
+# General files
+.DS_Store
+local.properties
+*.iml
+*.log
