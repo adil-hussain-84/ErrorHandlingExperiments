@@ -78,27 +78,11 @@ public class Experiment2JavaTest {
         assertEquals(2, value);
     }
 
+    @SuppressWarnings("KotlinInternalInJava")
     @Test
     public void test_8() {
-        Experiment2.Result<Integer> result = add(0, 1);
-
-        assertTrue(result.isFailure());
-
-        Experiment2.Error error = (Experiment2.Error) result;
-
-        assertEquals("SomeDomain", error.getDomain());
-        assertEquals(123, error.getCode());
-    }
-
-    private Experiment2.Result<Integer> add(Integer input1, Integer input2) {
-        Integer value1 = Experiment2.Companion.lowLevelOperation(input1).unwrapValueOrBailOutWith((error) -> {
-            return error;
+        assertThrows(kotlin.KotlinNothingValueException.class, () -> {
+            Experiment2.Companion.lowLevelOperation(0).unwrapValueOrBailOutWith((error) -> error);
         });
-
-        Integer value2 = Experiment2.Companion.lowLevelOperation(input2).unwrapValueOrBailOutWith((error) -> {
-            return error;
-        });
-
-        return new Experiment2.Success<>(value1 + value2);
     }
 }
