@@ -39,15 +39,15 @@ class Experiment1 {
         }
 
         fun highLevelOperationV2(input1: Int, input2: Int): Result<Int> {
-            val value1 = lowLevelOperation(input1).unwrapValueOrBailOutWith { return Result.failure(it) }
-            val value2 = lowLevelOperation(input2).unwrapValueOrBailOutWith { return Result.failure(it) }
+            val value1 = lowLevelOperation(input1).unwrapValueOrExitWith { return Result.failure(it) }
+            val value2 = lowLevelOperation(input2).unwrapValueOrExitWith { return Result.failure(it) }
 
             return Result.success(value1 + value2)
         }
     }
 }
 
-inline fun <T> Result<T>.unwrapValueOrBailOutWith(action: (throwable: Throwable) -> Nothing): T {
+inline fun <T> Result<T>.unwrapValueOrExitWith(action: (throwable: Throwable) -> Nothing): T {
     val exception = exceptionOrNull()
 
     if (exception != null) {

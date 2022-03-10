@@ -21,7 +21,7 @@ class Experiment2 {
             }
         }
 
-        inline fun unwrapValueOrBailOutWith(action: (error: Error) -> Nothing): T {
+        inline fun unwrapValueOrExitWith(action: (error: Error) -> Nothing): T {
             return when (this) {
                 is Error -> action(this)
                 is Success -> this.value
@@ -51,8 +51,8 @@ class Experiment2 {
         }
 
         fun highLevelOperation(input1: Int, input2: Int): Result<Int> {
-            val value1 = lowLevelOperation(input1).unwrapValueOrBailOutWith { return it }
-            val value2 = lowLevelOperation(input2).unwrapValueOrBailOutWith { return it }
+            val value1 = lowLevelOperation(input1).unwrapValueOrExitWith { return it }
+            val value2 = lowLevelOperation(input2).unwrapValueOrExitWith { return it }
 
             return Success(value1 + value2)
         }

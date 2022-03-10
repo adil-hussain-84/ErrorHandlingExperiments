@@ -16,7 +16,7 @@ class Experiment1KotlinTest {
 
     @Test
     fun test_2() {
-        val value = Experiment1.validateInput(1).unwrapValueOrBailOutWith {
+        val value = Experiment1.validateInput(1).unwrapValueOrExitWith {
             fail("Validation should have succeeded but got $it")
         }
         assertTrue(value)
@@ -34,7 +34,7 @@ class Experiment1KotlinTest {
 
     @Test
     fun test_4() {
-        val value = Experiment1.validateInputV2(1).unwrapValueOrBailOutWith {
+        val value = Experiment1.validateInputV2(1).unwrapValueOrExitWith {
             fail("Validation should have succeeded but got $it")
         }
         assertEquals(Unit, value)
@@ -53,7 +53,7 @@ class Experiment1KotlinTest {
 
     @Test
     fun test_6() {
-        val value = Experiment1.highLevelOperation(1, 1).unwrapValueOrBailOutWith {
+        val value = Experiment1.highLevelOperation(1, 1).unwrapValueOrExitWith {
             fail("Validation should have succeeded but got $it")
         }
         assertEquals(2, value)
@@ -72,7 +72,7 @@ class Experiment1KotlinTest {
 
     @Test
     fun test_8() {
-        val value = Experiment1.highLevelOperationV2(1, 1).unwrapValueOrBailOutWith {
+        val value = Experiment1.highLevelOperationV2(1, 1).unwrapValueOrExitWith {
             fail("Validation should have succeeded but got $it")
         }
         assertEquals(2, value)

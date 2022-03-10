@@ -70,7 +70,7 @@ public class Experiment2JavaTest {
     public void test_7() {
         Experiment2.Result<Integer> result = Experiment2.Companion.highLevelOperation(1, 1);
 
-        Integer value = result.unwrapValueOrBailOutWith((error) -> {
+        Integer value = result.unwrapValueOrExitWith((error) -> {
             fail("Failed unwrapping value. Encountered error: $it");
             return null;
         });
@@ -82,7 +82,7 @@ public class Experiment2JavaTest {
     @Test
     public void test_8() {
         assertThrows(kotlin.KotlinNothingValueException.class, () -> {
-            Experiment2.Companion.lowLevelOperation(0).unwrapValueOrBailOutWith((error) -> error);
+            Experiment2.Companion.lowLevelOperation(0).unwrapValueOrExitWith((error) -> error);
         });
     }
 }

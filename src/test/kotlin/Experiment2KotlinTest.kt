@@ -15,7 +15,7 @@ class Experiment2KotlinTest {
 
     @Test
     fun test_2() {
-        val value = Experiment2.validateInput(1).unwrapValueOrBailOutWith {
+        val value = Experiment2.validateInput(1).unwrapValueOrExitWith {
             fail("Failed unwrapping value. Encountered error: $it")
         }
         assertTrue(value)
@@ -42,7 +42,7 @@ class Experiment2KotlinTest {
 
     @Test
     fun test_5() {
-        val value = Experiment2.validateInputV2(1).unwrapValueOrBailOutWith {
+        val value = Experiment2.validateInputV2(1).unwrapValueOrExitWith {
             fail("Failed unwrapping value. Encountered error: $it")
         }
         assertEquals(Unit, value)
@@ -60,7 +60,7 @@ class Experiment2KotlinTest {
 
     @Test
     fun test_7() {
-        val value = Experiment2.highLevelOperation(1, 1).unwrapValueOrBailOutWith {
+        val value = Experiment2.highLevelOperation(1, 1).unwrapValueOrExitWith {
             fail("Failed unwrapping value. Encountered error: $it")
         }
         assertEquals(2, value)
