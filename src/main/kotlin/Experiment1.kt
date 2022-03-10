@@ -1,5 +1,3 @@
-import kotlin.Result
-
 class Experiment1 {
 
     data class MyException(val domain: String, val code: Int) : Exception()
